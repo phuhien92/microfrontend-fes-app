@@ -18,8 +18,15 @@ const prodConfig = {
         new ModuleFederationPlugin({
             name: "container",
             filename: "remoteEntry.js",
-            remotes: {},
-            exposes: {},
+            remotes: {
+                'marketing':`marketing@${domain}/marketing/latest/remoteEntry.js`,
+                'container': `container@${domain}/container/latest/remoteEntry.js`
+            },
+            exposes: {
+                './store':'./src/store',
+                './mf-header':'./src/components/Header/Header',
+                './DataComponent': './src/components/DataComponent'
+            },
             shared: {
                 ...deps,
                 react: {
