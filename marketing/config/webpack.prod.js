@@ -9,7 +9,7 @@ const prodConfig = {
     mode: "production",
     output: {
         filename: '[name].[contenthash].js',
-        publicPath: `${domain}/container/latest/`,    
+        publicPath: `${domain}/marketing/latest/`,    
     },
     resolve: {
         extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
@@ -18,8 +18,12 @@ const prodConfig = {
         new ModuleFederationPlugin({
             name: "marketing",
             filename: "remoteEntry.js",
-            remotes: {},
-            exposes: {},
+            remotes: {
+                container: 'container@http://localhost:8080/remoteEntry.js'
+            },
+            exposes: {
+                './MarketingApp':'./src/bootstrap'
+            },
             shared: {
                 ...deps,
                 react: {
