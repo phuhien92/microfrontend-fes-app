@@ -19,7 +19,7 @@ const prodConfig = {
             name: "marketing",
             filename: "remoteEntry.js",
             remotes: {
-                container: 'container@http://localhost:8080/remoteEntry.js'
+                container: `container@${domain}/marketing/latest/remoteEntry.js`
             },
             exposes: {
                 './MarketingApp':'./src/bootstrap'
